@@ -8,6 +8,15 @@ module.exports = {
     `gatsby-plugin-theme-ui`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "MDLAPI",
+        fieldName: "mdlapi",
+        url:
+          "https://wmacy98hwe.execute-api.us-east-1.amazonaws.com/dev/graphql",
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

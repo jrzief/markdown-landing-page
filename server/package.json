@@ -19,6 +19,7 @@
     "aws-lambda": "^0.1.2",
     "aws-sdk": "^2.590.0",
     "graphql": "^14.5.8",
+    "simple-dynamodb": "^1.0.0",
     "uuid": "^3.3.3"
   }
 }

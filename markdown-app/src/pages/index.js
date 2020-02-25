@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 //import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
@@ -7,67 +7,16 @@ import SEO from "../components/seo"
 
 import { Heading, Button } from "rebass"
 
+import { LoginButton } from "../components/LoginButton"
+
 import { useAuth } from "react-use-auth"
-import { useMutation } from "react-apollo-hooks"
+//import { useMutation } from "react-apollo-hooks"
 
 //import { useQuery } from "react-apollo-hooks"
-import gql from "graphql-tag"
-
-const LoginButton = () => {
-  const { isAuthenticated, user, userId, login, logout } = useAuth()
-
-  const [updateUser, { data }] = useMutation(
-    gql`
-      mutation updateUser($userId: String) {
-        updateUser(userId: $userId) {
-          userId
-        }
-      }
-    `,
-    {
-      variables: {
-        userId,
-      },
-    }
-  )
-  // runs when userId updates
-  useEffect(() => {
-    updateUser()
-  }, [userId])
-
-  console.log(data)
-
-  return isAuthenticated() ? (
-    <Button bg="muted" onClick={logout}>
-      Logout
-    </Button>
-  ) : (
-    <Button bg="highlight" onClick={login}>
-      Get started
-    </Button>
-  )
-}
+//import gql from "graphql-tag"
 
 const IndexPage = () => {
   const { isAuthenticated, user, login } = useAuth()
-
-  /* const data = useStaticQuery(graphql`
-    query {
-      mdlapi {
-        hello {
-          world
-        }
-      }
-    }
-  `)
-
-  const apolloData = useQuery(gql`
-    query hello {
-      hello {
-        world
-      }
-    }
-  `) */
 
   /*  const liveData = apolloData.data,
     loading = apolloData.loading */
@@ -82,16 +31,13 @@ const IndexPage = () => {
         {liveData ? liveData.hello.world : data.mdlapi.hello.world}
       </p> */}
       {/* {loading ? <p>Fetching ..</p> : null} */}
-      {isAuthenticated() ? <p>Hello {user.name}</p> : null}
+      {isAuthenticated() ? (
+        <p>Hello {user.name} What are you going to create today? </p>
+      ) : null}
 
       <LoginButton />
-      {/* <Button bg="highlite" onClick={login}>
-        Get Started
-      </Button> */}
-      {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <Image />
-      </div>
-      <Link to="/page-2/">Go to page 2</Link> */}
+
+      {/* <Link to="/page-2/">Go to page 2</Link>  */}
     </Layout>
   )
 }
